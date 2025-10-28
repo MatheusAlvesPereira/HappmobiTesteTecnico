@@ -1,0 +1,5 @@
+<div class="card">
+  <div class="title">{{vehicle.make}} {{vehicle.model}}</div>
+  <div class="meta">{{vehicle.year}} • {{vehicle.color}} • {{vehicle.licensePlate}}</div>
+  <div class="status" [class.busy]="vehicle.isReserved">{{vehicle.isReserved ? 'Reservado' : 'Disponível'}}</div>
+</div>

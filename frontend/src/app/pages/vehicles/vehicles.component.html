@@ -1,0 +1,7 @@
+<app-header></app-header>
+<main class="container">
+  <h2>Veículos</h2>
+  <section class="grid">
+    <app-vehicle-card *ngFor="let v of vehicles" [vehicle]="v"></app-vehicle-card>
+  </section>
+</main>

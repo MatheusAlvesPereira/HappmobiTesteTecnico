@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:7
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+  backend:
+    build: ./backend
+    command: sh -c 'npm run build && node dist/index.js'
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/happmobi
+      - JWT_SECRET=supersecret
+      - PORT=5000
+    depends_on:
+      - mongo
+    ports:
+      - '5000:5000'
+volumes:
+  mongo_data:

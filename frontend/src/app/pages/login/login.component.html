@@ -1,0 +1,9 @@
+<div>
+  <h2>Entrar</h2>
+  <form (ngSubmit)="submit()">
+    <input placeholder="Email" [(ngModel)]="email" name="email" required>
+    <input placeholder="Senha" [(ngModel)]="password" name="password" type="password" required>
+    <button type="submit">Entrar</button>
+  </form>
+  <div *ngIf="error">{{error}}</div>
+</div>

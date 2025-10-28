@@ -1,0 +1,41 @@
+# Root ignores
+node_modules/
+dist/
+build/
+.angular/
+.next/
+.cache/
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+*.tmp
+*.swp
+.idea/
+.vscode/
+.history/
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Coverage and reports
+coverage/
+reports/
+
+# Docker
+**/.docker/
+.env.docker
+
+# OS junk
+Desktop.ini
+
+# Ignore built frontend output
+frontend/dist/
+
+# Ignore built backend output
+backend/dist/
+

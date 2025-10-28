@@ -1,0 +1,10 @@
+<div>
+  <h2>Criar conta</h2>
+  <form (ngSubmit)="submit()">
+    <input placeholder="Nome" [(ngModel)]="username" name="username" required>
+    <input placeholder="Email" [(ngModel)]="email" name="email" required>
+    <input placeholder="Senha" [(ngModel)]="password" name="password" type="password" required>
+    <button type="submit">Cadastrar</button>
+  </form>
+  <div *ngIf="error">{{error}}</div>
+</div>

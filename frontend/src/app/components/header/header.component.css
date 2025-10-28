@@ -1,0 +1,4 @@
+.app-header { display: flex; align-items: center; padding: 12px 16px; border-bottom: 1px solid #eee; }
+.logo { font-weight: 700; font-size: 20px; }
+.spacer { flex: 1; }
+.logout { background: #111; color: #fff; border: 0; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
