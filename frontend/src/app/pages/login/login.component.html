@@ -3,12 +3,12 @@
   <img src="Caminho 1996.png" alt="Guardians Logo">
   <h2 class="logintitle">Guardians</h2>
   <form (ngSubmit)="submit()">
-    <input class="inputuser" placeholder="Usuário" [(ngModel)]="email" name="email" required>
+    <input class="inputuser" placeholder="Usuário - email" [(ngModel)]="email" name="email" required>
     <input class="inputsenha" placeholder="Senha" [(ngModel)]="password" name="password" type="password" required>
     <button class="btnsubmit" type="submit">Entrar</button>
 
-    <button class="btnforgot" type="button">Esqueci minha senha</button><br/>
-    <button class="btnregister" type="button">Ainda não tem Cadastro? <span class="btnregisterlink">Criar Conta</span></button>
+    <button class="btnforgot" type="button" (click)="navigateToForgotPassword()">Esqueci minha senha</button><br />
+    <button class="btnregister" type="button" (click)="navigateToRegister()">Ainda não tem Cadastro? <span class="btnregisterlink">Criar Conta</span></button>
   </form>
   <div *ngIf="error">{{error}}</div>
 </div>

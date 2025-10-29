@@ -12,6 +12,7 @@ import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { HeaderComponent } from './components/header/header.component';
 import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.com
     VehiclesComponent,
     ReservationsComponent,
     HeaderComponent,
-    VehicleCardComponent
+    VehicleCardComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

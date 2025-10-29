@@ -11,7 +11,7 @@ services:
     command: sh -c 'npm run build && node dist/index.js'
     environment:
       - MONGO_URI=mongodb://mongo:27017/happmobi
-      - JWT_SECRET=2ec1fef3c16370b90f189295f53d381c50d164668784bd659cf98b2cbfa7d9b8
+      - JWT_SECRET=45543e016df4b739c7d7b084d566cf6e8af923c319a04f07c849e0663cf30f60
       - PORT=5000
     depends_on:
       - mongo

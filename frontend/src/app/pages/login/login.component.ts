@@ -14,6 +14,14 @@ export class LoginComponent {
 
   constructor(private api: ApiService, private router: Router) {}
 
+  navigateToForgotPassword() {
+    this.router.navigate(['/forgot-password']);
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/register']);
+  }
+
   submit() {
     this.api.login({ email: this.email, password: this.password }).subscribe({
       next: (res) => {
