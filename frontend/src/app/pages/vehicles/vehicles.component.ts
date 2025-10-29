@@ -8,8 +8,19 @@ import { ApiService } from '../../services/api.service';
 })
 export class VehiclesComponent implements OnInit {
   vehicles: any[] = [];
+  filtered: any[] = [];
+  query: string = '';
+  availability: 'all' | 'available' | 'reserved' = 'all';
   constructor(private api: ApiService) {}
   ngOnInit(): void {
-    this.api.getVehicles().subscribe({ next: v => this.vehicles = v });
+    this.api.getVehicles().subscribe({ next: v => { this.vehicles = v; this.applyFilters(); } });
+  }
+  applyFilters(): void {
+    const q = this.query.trim().toLowerCase();
+    this.filtered = this.vehicles.filter(v => {
+      const matchesQuery = !q || `${v.make} ${v.model} ${v.licensePlate}`.toLowerCase().includes(q);
+      const matchesAvail = this.availability === 'all' || (this.availability === 'available' ? !v.isReserved : !!v.isReserved);
+      return matchesQuery && matchesAvail;
+    });
   }
 }

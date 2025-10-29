@@ -1,5 +1,13 @@
 <div class="card">
-  <div class="title">{{vehicle.make}} {{vehicle.model}}</div>
-  <div class="meta">{{vehicle.year}} • {{vehicle.color}} • {{vehicle.licensePlate}}</div>
-  <div class="status" [class.busy]="vehicle.isReserved">{{vehicle.isReserved ? 'Reservado' : 'Disponível'}}</div>
+  <div class="image-wrap">
+    <img src="/Carros/Imagem 18.png" alt="{{vehicle.make}} {{vehicle.model}}" />
+  </div>
+  <div class="info">
+    <div class="title">{{vehicle.make}} {{vehicle.model}}</div>
+    <div class="meta">{{vehicle.year}} • {{vehicle.color}} • {{vehicle.licensePlate}}</div>
+  </div>
+  <div class="footer">
+    <span class="status" [class.busy]="vehicle.isReserved">{{vehicle.isReserved ? 'Reservado' : 'Disponível'}}</span>
+    <button class="btn btn-primary" [disabled]="vehicle.isReserved">Reservar</button>
+  </div>
 </div>

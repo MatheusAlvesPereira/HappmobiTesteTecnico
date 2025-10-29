@@ -1,7 +1,16 @@
-<app-header></app-header>
 <main class="container">
-  <h2>Veículos</h2>
+  <section class="toolbar">
+    <h2>Catálogo</h2>
+    <div class="filters">
+      <input placeholder="Buscar por marca, modelo ou placa" [(ngModel)]="query" (ngModelChange)="applyFilters()" />
+      <select [(ngModel)]="availability" (ngModelChange)="applyFilters()">
+        <option value="all">Todos</option>
+        <option value="available">Disponíveis</option>
+        <option value="reserved">Reservados</option>
+      </select>
+    </div>
+  </section>
   <section class="grid">
-    <app-vehicle-card *ngFor="let v of vehicles" [vehicle]="v"></app-vehicle-card>
+    <app-vehicle-card *ngFor="let v of filtered" [vehicle]="v"></app-vehicle-card>
   </section>
 </main>

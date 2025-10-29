@@ -1,5 +1,9 @@
 <header class="app-header">
   <div class="logo">Happmobi</div>
-  <nav class="spacer"></nav>
+  <nav class="nav">
+    <a routerLink="/vehicles" routerLinkActive="active">Veículos</a>
+    <a routerLink="/reservations" routerLinkActive="active">Minhas reservas</a>
+  </nav>
+  <div class="spacer"></div>
   <button class="logout" (click)="logout()">Sair</button>
 </header>
