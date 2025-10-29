@@ -1,10 +1,17 @@
 <div>
-  <h2>Criar conta</h2>
-  <form (ngSubmit)="submit()">
-    <input placeholder="Nome" [(ngModel)]="username" name="username" required>
-    <input placeholder="Email" [(ngModel)]="email" name="email" required>
-    <input placeholder="Senha" [(ngModel)]="password" name="password" type="password" required>
-    <button type="submit">Cadastrar</button>
-  </form>
-  <div *ngIf="error">{{error}}</div>
+  <div class="login">
+    <img class="backgroundimg" src="Grupo 46.png" alt="Logo">
+    <img src="Caminho 1996.png" alt="Guardians Logo">
+    <h2 class="logintitle">Guardians</h2>
+    <form (ngSubmit)="submit()">
+      <input class="inputuser" placeholder="Usuário" [(ngModel)]="username" name="username" required>
+      <input class="inputuser" placeholder="E-mail" [(ngModel)]="email" name="email" required>
+      <input class="inputsenha" placeholder="Senha" [(ngModel)]="password" name="password" type="password" required>
+      <button class="btnsubmit" type="submit">Cadastrar</button>
+  
+      <button class="btnforgot" type="button" (click)="navigateToForgotPassword()">Esqueci minha senha</button><br />
+      <button class="btnregister" type="button" (click)="navigateToLogin()">já tem Cadastro?<span class="btnregisterlink">Login</span></button>
+    </form>
+    <div *ngIf="error">{{error}}</div>
+  </div>  
 </div>

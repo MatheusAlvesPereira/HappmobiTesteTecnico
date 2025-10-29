@@ -8,7 +8,7 @@ import { ApiService } from '../../services/api.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  email = '';
+  username = '';
   password = '';
   error?: string;
 
@@ -23,7 +23,7 @@ export class LoginComponent {
   }
 
   submit() {
-    this.api.login({ email: this.email, password: this.password }).subscribe({
+    this.api.login({ username: this.username, password: this.password }).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
         this.router.navigate(['/vehicles']);

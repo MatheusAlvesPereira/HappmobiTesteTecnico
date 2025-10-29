@@ -1,0 +1,130 @@
+.logintitle{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 56px;
+    color: rgba(255, 255, 255, 1);
+    margin-top: 11px;
+    align-items: center;
+}
+
+.login{
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:#1D2B3A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color:#1D2B3A;
+}
+
+.backgroundimg{
+    position: absolute;
+    width: 289px;
+    height: 319px;
+    top: -35px;
+    left: 186px;
+    opacity: 0.05;
+    top: -35px;
+    left: 186px;
+    object-fit: cover;
+    opacity: 0.3;
+}
+
+.inputuser{
+    width: 354px;
+    height: 63px;
+    margin-top: 65px;
+    margin-inline: 37px;
+    border-radius: 32px;
+    
+    width: 354px;
+    height: 63px;
+    margin-top: 17px;
+    margin-inline: 37px;
+    border-radius: 32px;
+    font-family: Poppins;
+    font-style: Regular;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgba(175, 175, 175, 1);
+    line-height: 100%;
+}
+
+.inputsenha{
+    width: 354px;
+    height: 63px;
+    margin-top: 17px;
+    margin-inline: 37px;
+    border-radius: 32px;
+    font-family: Poppins;
+    font-style: Regular;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgba(175, 175, 175, 1);
+    line-height: 100%;
+}
+
+.btnsubmit{
+    width: 354px;
+    height: 63px;
+    margin-top: 80px;
+    margin-inline: 37px;
+    border-radius: 32px;
+    background-color: rgb(198, 29, 53);
+    border: none;
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 20px;
+    color: #ffff;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+.btnforgot{
+    margin-inline: 129px;
+    margin-top: 15px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    color: rgba(255, 255, 255, 1);
+}
+
+.btnregister{
+    margin-top: 130px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+    margin-left: 64px;
+    margin-right: 72px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.btnregisterlink{
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+}

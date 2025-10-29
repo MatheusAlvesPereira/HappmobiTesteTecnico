@@ -15,7 +15,7 @@ export class ApiService {
     return new HttpHeaders({ Authorization: token ? `Bearer ${token}` : '' });
   }
 
-  login(data: { email: string; password: string }): Observable<any> {
+  login(data: { username: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/login`, data);
     }
 

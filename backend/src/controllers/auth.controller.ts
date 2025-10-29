@@ -25,14 +25,14 @@ export async function register(req: Request, res: Response) {
 }
 
 export async function login(req: Request, res: Response) {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
 
   if (!user) return res.status(401).json({ message: 'Invalid credentials' });
 
-  const ok = await bcrypt.compare(password, user.password);
+  const passwordcenrypt = await bcrypt.compare(password, user.password);
 
-  if (!ok) return res.status(401).json({ message: 'Invalid credentials' });
+  if (!passwordcenrypt) return res.status(401).json({ message: 'Invalid credentials' });
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'secret', { expiresIn: '1h' });
   
