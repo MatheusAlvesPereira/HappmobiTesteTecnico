@@ -17,10 +17,14 @@ export class ApiService {
 
   login(data: { username: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/login`, data);
-    }
+  }
 
   register(data: { username: string; email: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/register`, data);
+  }
+
+  forgotPassword(email: string, newPassword: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/reset-password-direct`, { email, newPassword });
   }
 
   getVehicles(): Observable<any[]> {
