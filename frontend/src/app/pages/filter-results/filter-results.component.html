@@ -1,0 +1,27 @@
+<main class="filter-results">
+  <header>
+    <button (click)="goBackToFilter()" class="back-button">← Voltar aos Filtros</button>
+    <h1>Resultados da Busca</h1>
+    <p class="results-count">{{ filteredCars.length }} carro(s) encontrado(s)</p>
+  </header>
+
+  <section class="results-grid">
+    <div class="car-card" *ngFor="let car of filteredCars">
+      <div class="car-info">
+        <h2>{{ car.name }}</h2>
+        <p class="car-year">Ano: {{ car.year }}</p>
+        <div class="car-details">
+          <span class="badge">{{ car.type }}</span>
+          <span class="badge">{{ car.engine }}</span>
+          <span class="badge">{{ car.size }} lugares</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="no-results" *ngIf="filteredCars.length === 0">
+    <p>Nenhum carro encontrado com os filtros selecionados.</p>
+    <button (click)="goBackToFilter()" class="btn-primary">Ajustar Filtros</button>
+  </div>
+</main>
+

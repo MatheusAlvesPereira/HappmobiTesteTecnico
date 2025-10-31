@@ -1,0 +1,110 @@
+.filter-results {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #1D2B3A;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  text-decoration: underline;
+}
+
+.back-button:hover {
+  color: #000;
+}
+
+h1 {
+  color: #1D2B3A;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.results-count {
+  color: #666;
+  font-size: 1rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.car-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.car-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.car-info h2 {
+  color: #1D2B3A;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.car-year {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.car-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badge {
+  background: #1D2B3A;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.no-results p {
+  color: #666;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  background-color: #1D2B3A;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: #2a3f54;
+}
+

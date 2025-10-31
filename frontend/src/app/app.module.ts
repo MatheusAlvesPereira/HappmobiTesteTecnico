@@ -14,6 +14,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { FilterComponent } from './filter/filter.component';
+import { FilterResultsComponent } from './pages/filter-results/filter-results.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FilterComponent } from './filter/filter.component';
     HeaderComponent,
     VehicleCardComponent,
     ForgotPasswordComponent,
-    FilterComponent
+    FilterComponent,
+    FilterResultsComponent
   ],
   imports: [
     BrowserModule,

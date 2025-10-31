@@ -6,6 +6,7 @@ import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { FilterComponent } from './filter/filter.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { FilterResultsComponent } from './pages/filter-results/filter-results.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'vehicles', component: VehiclesComponent, canActivate: [AuthGuard] },
   { path: 'filter', component: FilterComponent, canActivate: [AuthGuard] },
+  { path: 'filter-results', component: FilterResultsComponent, canActivate: [AuthGuard] },
   { path: 'reservations', component: ReservationsComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'vehicles' }
 ];

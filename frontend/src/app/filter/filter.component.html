@@ -9,22 +9,26 @@
         <ul>
             <li><a href="default.asp">Cancelar</a></li>
             <li><a href="news.asp">Filtros</a></li>
-            <li><a href="contact.asp">Limpar</a></li>
+            <li><a (click)="clearFilters(); $event.preventDefault()" style="cursor: pointer;">Limpar</a></li>
         </ul>
     </nav>
 
-    <div class="btnform">
-        <ul>
-            <li>
-                <p>Tipos de carrocerias</p>
-            </li>
-            <li>
-                <img class="btnimg" src="btnform.png" alt="botão dos tipos de carroceria"/>
-            </li> 
-        </ul>
-    </div>
-
     <form>
+
+        <!-- Tipos de carroceria checkbox filter -->
+        <div class="btnform">
+            <ul>
+                <li>
+                    <p>Tipos de carrocerias</p>
+                </li>
+            </ul>
+            <div>
+                <label *ngFor="let type of typeOptions" style="display:inline-block;margin:0 1rem 0.75rem 0;">
+                    <input type="checkbox" (change)="onTypeToggle(type, $event.target)" />
+                    {{ type }}
+                </label>
+            </div>
+        </div>
 
         <!-- Dynamic engine checkbox filter (built from public/carros.json) -->
         <div class="btnform">
@@ -41,32 +45,24 @@
             </div>
         </div>
     
-        
+        <!-- Quantidade de lugares checkbox filter -->
         <div class="btnform">
             <ul>
                 <li>
                     <p>Quantidade de Lugares</p>
                 </li>
-                <li>
-                    <img class="btnimg" src="btnform.png" alt="botão dos tipos de carroceria"/>
-                </li>        
             </ul>
+            <div>
+                <label *ngFor="let size of sizeOptions" style="display:inline-block;margin:0 1rem 0.75rem 0;">
+                    <input type="checkbox" (change)="onSizeToggle(size, $event.target)" />
+                    {{ size }} lugares
+                </label>
+            </div>
         </div>
     </form>
-
-    <!-- Simple preview of filtered results -->
-    <div class="btnform" *ngIf="filteredCars?.length">
-        <p>Carros encontrados: {{ filteredCars.length }}</p>
-        <ul>
-            <li *ngFor="let car of filteredCars">
-                {{ car.name }} - {{ car.engine }} - {{ car.type }}
-            </li>
-        </ul>
-    </div>
-
     
     <div class="apllyfilters">
-        <button class="btnfilter" type="button">
+        <button class="btnfilter" type="button" (click)="applyFilters()">
             <p>applicar filtro</p>
         </button>
     </div>
