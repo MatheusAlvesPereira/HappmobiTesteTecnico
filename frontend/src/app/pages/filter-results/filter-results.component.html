@@ -7,6 +7,9 @@
 
   <section class="results-grid">
     <div class="car-card" *ngFor="let car of filteredCars">
+      <div class="car-image-wrap">
+        <img [src]="getCarImage(car)" [alt]="car.name" (error)="onImageError($event, car)" />
+      </div>
       <div class="car-info">
         <h2>{{ car.name }}</h2>
         <p class="car-year">Ano: {{ car.year }}</p>
