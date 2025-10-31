@@ -13,6 +13,7 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
 import { HeaderComponent } from './components/header/header.component';
 import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     ReservationsComponent,
     HeaderComponent,
     VehicleCardComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

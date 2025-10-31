@@ -1,0 +1,73 @@
+<main class="vehclesfilter">
+
+    <div class="searchbackground">
+        <img src="imgfilter.png" alt="icone de busca" />
+        <p>Busca</p>
+    </div>
+    
+    <nav>
+        <ul>
+            <li><a href="default.asp">Cancelar</a></li>
+            <li><a href="news.asp">Filtros</a></li>
+            <li><a href="contact.asp">Limpar</a></li>
+        </ul>
+    </nav>
+
+    <div class="btnform">
+        <ul>
+            <li>
+                <p>Tipos de carrocerias</p>
+            </li>
+            <li>
+                <img class="btnimg" src="btnform.png" alt="botão dos tipos de carroceria"/>
+            </li> 
+        </ul>
+    </div>
+
+    <form>
+
+        <!-- Dynamic engine checkbox filter (built from public/carros.json) -->
+        <div class="btnform">
+            <ul>
+                <li>
+                    <p>Tipos de motores</p>
+                </li>
+            </ul>
+            <div>
+                <label *ngFor="let engine of engineOptions" style="display:inline-block;margin:0 1rem 0.75rem 0;">
+                    <input type="checkbox" (change)="onEngineToggle(engine, $event.target)" />
+                    {{ engine }}
+                </label>
+            </div>
+        </div>
+    
+        
+        <div class="btnform">
+            <ul>
+                <li>
+                    <p>Quantidade de Lugares</p>
+                </li>
+                <li>
+                    <img class="btnimg" src="btnform.png" alt="botão dos tipos de carroceria"/>
+                </li>        
+            </ul>
+        </div>
+    </form>
+
+    <!-- Simple preview of filtered results -->
+    <div class="btnform" *ngIf="filteredCars?.length">
+        <p>Carros encontrados: {{ filteredCars.length }}</p>
+        <ul>
+            <li *ngFor="let car of filteredCars">
+                {{ car.name }} - {{ car.engine }} - {{ car.type }}
+            </li>
+        </ul>
+    </div>
+
+    
+    <div class="apllyfilters">
+        <button class="btnfilter" type="button">
+            <p>applicar filtro</p>
+        </button>
+    </div>
+</main>

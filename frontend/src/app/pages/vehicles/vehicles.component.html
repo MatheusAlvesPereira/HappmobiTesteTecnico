@@ -1,16 +1,55 @@
-<main class="container">
+<main class="vehcleshome">
+  <section class="backgroundimgcarcontainersection">
+    <div class="backgroundimgcarcontainer">
+      <img class="imagebackgroundcar" src="AdobeStock_302279500.png" alt="imagem de fundo">
+      <img class="profilepicture" src="profilepicture.png" alt="imagem de perfil">
+      <p class="helloname">Olá, <span>name</span></p>
+    </div>
+  </section>
   <section class="toolbar">
-    <h2>Catálogo</h2>
     <div class="filters">
+      <img src="Searchbar.png" alt="icone de busca" />
+  
+      <button class="btnfilter" type="button" (click)="ActivateFilter()">
+        <img src="btnFilter.png" alt="icone de filtro" />
+      </button>  
+    </div>
+    <div class="search">
       <input placeholder="Buscar por marca, modelo ou placa" [(ngModel)]="query" (ngModelChange)="applyFilters()" />
-      <select [(ngModel)]="availability" (ngModelChange)="applyFilters()">
+      
+      <!-- <select [(ngModel)]="availability" (ngModelChange)="applyFilters()">
         <option value="all">Todos</option>
         <option value="available">Disponíveis</option>
         <option value="reserved">Reservados</option>
-      </select>
+      </select> -->
+  
+      <p class="lastreservationstext">Últimas reservas</p>
+      
+      <p class="lastreservationstext">Carros Disponíveis</p>
+
+      <button class="btnqrcode">
+        <img class="btnqrcodeimg" src="Qrcodebtn.png" alt="icone de qrcode" />
+      </button>  
     </div>
   </section>
   <section class="grid">
     <app-vehicle-card *ngFor="let v of filtered" [vehicle]="v"></app-vehicle-card>
   </section>
+  
+  <div class="navbar">
+    <a href="#home"> 
+      <img src="btnhome.png" alt="icone de home" />
+    </a>
+    <a href="#news">
+      <img src="btnagendamentos.png" alt="icone de agendamentos" />
+    </a>
+    <a href="#contact">
+      <img src="btncentral.png" alt="icone da central" />
+    </a>
+    <a href="#contact">
+      <img src="btnperfil.png" alt="icone do perfil" />
+    </a>
+  </div>
+  
+
 </main>
