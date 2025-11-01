@@ -77,3 +77,69 @@
     font-size: 17px;
 }
 
+.recent-reservations {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.reservation-item {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.reservation-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.reservation-image-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.reservation-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.reservation-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.reservation-vehicle {
+    font-weight: 600;
+    color: #1D2B3A;
+    font-size: 0.875rem;
+}
+
+.reservation-plate {
+    font-size: 0.75rem;
+    color: #666;
+    background: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.no-reservations {
+    margin-top: 0.5rem;
+}
+
+.no-reservations-text {
+    font-size: 0.875rem;
+    color: #999;
+    font-style: italic;
+}

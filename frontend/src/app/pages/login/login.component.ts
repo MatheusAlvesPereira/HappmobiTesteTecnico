@@ -26,6 +26,10 @@ export class LoginComponent {
     this.api.login({ username: this.username, password: this.password }).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
+        // Salva o userId se vier na resposta
+        if (res.user && res.user.id) {
+          localStorage.setItem('userId', res.user.id);
+        }
         this.router.navigate(['/vehicles']);
       },
       error: () => this.error = 'Credenciais inválidas'

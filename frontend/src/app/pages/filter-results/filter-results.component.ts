@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FilterService } from '../../services/filter.service';
+import { ApiService } from '../../services/api.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-filter-results',
@@ -8,11 +10,14 @@ import { FilterService } from '../../services/filter.service';
   styleUrl: './filter-results.component.css'
 })
 export class FilterResultsComponent implements OnInit {
-  filteredCars: Array<{ name: string; year: string; type: string; engine: string; size: string; image?: string }> = [];
+  filteredCars: Array<{ name: string; year: string; type: string; engine: string; size: string; image?: string; isReserved?: boolean; vehicleId?: string }> = [];
+  reserving: { [key: string]: boolean } = {}; // Track which car is being reserved
 
   constructor(
     private filterService: FilterService,
-    private router: Router
+    private router: Router,
+    private api: ApiService,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -78,6 +83,101 @@ export class FilterResultsComponent implements OnInit {
       // Fallback genérico
       img.src = '/Carros/Imagem 26.png';
     }
+  }
+
+  async reserveCar(car: any): Promise<void> {
+    const userId = this.auth.getUserId();
+    if (!userId) {
+      alert('Você precisa estar logado para reservar um carro.');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // Marca como reservando
+    this.reserving[car.name] = true;
+
+    try {
+      let vehicleId = car.vehicleId;
+
+      // Se não tem vehicleId, precisa encontrar ou criar o veículo
+      if (!vehicleId) {
+        // Primeiro tenta encontrar um veículo existente pelo modelo
+        this.api.findVehicleByModel(car.name).subscribe({
+          next: (vehicles) => {
+            // Filtra veículos pelo modelo
+            const matchingVehicle = vehicles.find(v => v.model === car.name);
+            if (matchingVehicle) {
+              vehicleId = matchingVehicle._id || matchingVehicle.id;
+              this.performReservation(car, userId, vehicleId);
+            } else {
+              // Se não encontrou, cria um novo veículo
+              this.api.createVehicleFromCar(car).subscribe({
+                next: (newVehicle) => {
+                  vehicleId = newVehicle._id || newVehicle.id;
+                  this.performReservation(car, userId, vehicleId);
+                },
+                error: (err) => {
+                  console.error('Error creating vehicle:', err);
+                  const errorMessage = err.error?.message || 'Erro ao criar veículo. Tente novamente.';
+                  alert(errorMessage);
+                  this.reserving[car.name] = false;
+                }
+              });
+            }
+          },
+          error: (err) => {
+            // Se não conseguiu buscar, tenta criar direto
+            this.api.createVehicleFromCar(car).subscribe({
+              next: (newVehicle) => {
+                vehicleId = newVehicle._id || newVehicle.id;
+                this.performReservation(car, userId, vehicleId);
+              },
+              error: (createErr) => {
+                console.error('Error creating vehicle:', createErr);
+                const errorMessage = createErr.error?.message || 'Erro ao criar veículo. Tente novamente.';
+                alert(errorMessage);
+                this.reserving[car.name] = false;
+              }
+            });
+          }
+        });
+      } else {
+        // Já tem vehicleId, pode reservar direto
+        this.performReservation(car, userId, vehicleId);
+      }
+    } catch (error) {
+      console.error('Error reserving car:', error);
+      alert('Erro ao reservar carro. Tente novamente.');
+      this.reserving[car.name] = false;
+    }
+  }
+
+  private performReservation(car: any, userId: string, vehicleId: string): void {
+    this.api.createReservation({ userId, vehicleId }).subscribe({
+      next: (reservation) => {
+        // Atualiza o estado do carro
+        const carIndex = this.filteredCars.findIndex(c => c.name === car.name);
+        if (carIndex >= 0) {
+          this.filteredCars[carIndex].isReserved = true;
+          this.filteredCars[carIndex].vehicleId = vehicleId;
+        }
+        this.reserving[car.name] = false;
+        alert('Carro reservado com sucesso!');
+        
+        // Notifica o FilterService para atualizar outros componentes se necessário
+        // Pode redirecionar para veículos para ver a reserva
+        const shouldGoToVehicles = confirm('Carro reservado! Deseja ver suas reservas?');
+        if (shouldGoToVehicles) {
+          this.router.navigate(['/vehicles']);
+        }
+      },
+      error: (err) => {
+        console.error('Error creating reservation:', err);
+        const errorMessage = err.error?.message || 'Erro ao reservar carro. Tente novamente.';
+        alert(errorMessage);
+        this.reserving[car.name] = false;
+      }
+    });
   }
 
   goBackToFilter(): void {

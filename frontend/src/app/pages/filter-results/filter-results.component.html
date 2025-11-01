@@ -18,6 +18,17 @@
           <span class="badge">{{ car.engine }}</span>
           <span class="badge">{{ car.size }} lugares</span>
         </div>
+        <div class="car-footer">
+          <span class="status" [class.reserved]="car.isReserved">
+            {{ car.isReserved ? 'Reservado' : 'Disponível' }}
+          </span>
+          <button 
+            class="btn-reserve" 
+            [disabled]="car.isReserved || reserving[car.name]"
+            (click)="reserveCar(car)">
+            {{ reserving[car.name] ? 'Reservando...' : (car.isReserved ? 'Reservado' : 'Reservar') }}
+          </button>
+        </div>
       </div>
     </div>
   </section>

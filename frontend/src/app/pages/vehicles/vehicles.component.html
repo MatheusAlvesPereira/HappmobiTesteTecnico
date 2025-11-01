@@ -25,7 +25,26 @@
   
       <p class="lastreservationstext">Últimas reservas</p>
       
-      <p class="lastreservationstext">Carros Disponíveis</p>
+      <!-- Últimas reservas do usuário -->
+      <div class="recent-reservations" *ngIf="recentReservations.length > 0">
+        <div class="reservation-item" *ngFor="let reservation of recentReservations">
+          <div class="reservation-content" *ngIf="reservation.vehicle">
+            <div class="reservation-image-wrap">
+              <img 
+                [src]="getVehicleImage(reservation.vehicle.model)" 
+                [alt]="reservation.vehicle.make + ' ' + reservation.vehicle.model"
+                (error)="onReservationImageError($event)" />
+            </div>
+            <div class="reservation-info">
+              <span class="reservation-vehicle">{{ reservation.vehicle.make }} {{ reservation.vehicle.model }}</span>
+              <span class="reservation-plate">{{ reservation.vehicle.licensePlate }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="no-reservations" *ngIf="recentReservations.length === 0">
+        <p class="no-reservations-text">Nenhuma reserva recente</p>
+      </div>
 
       <button class="btnqrcode">
         <img class="btnqrcodeimg" src="Qrcodebtn.png" alt="icone de qrcode" />

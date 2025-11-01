@@ -1,6 +1,6 @@
 <div class="card">
   <div class="image-wrap">
-    <img src="/Carros/Imagem 18.png" alt="{{vehicle.make}} {{vehicle.model}}" />
+    <img [src]="getVehicleImage()" [alt]="vehicle.make + ' ' + vehicle.model" (error)="onImageError($event)" />
   </div>
   <div class="info">
     <div class="title">{{vehicle.make}} {{vehicle.model}}</div>

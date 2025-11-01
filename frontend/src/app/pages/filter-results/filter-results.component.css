@@ -130,3 +130,44 @@ h1 {
   background-color: #2a3f54;
 }
 
+.car-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.status {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #28a745;
+}
+
+.status.reserved {
+  color: #dc3545;
+}
+
+.btn-reserve {
+  background-color: #1D2B3A;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-reserve:hover:not(:disabled) {
+  background-color: #2a3f54;
+}
+
+.btn-reserve:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
