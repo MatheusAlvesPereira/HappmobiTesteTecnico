@@ -8,7 +8,6 @@ export async function createVehicle(req: Request, res: Response) {
   } catch (error: any) {
     console.error('Error creating vehicle:', error);
     if (error.code === 11000) {
-      // Duplicate key error (unique constraint violation)
       return res.status(400).json({ message: 'Placa já cadastrada. Tente novamente.' });
     }
     if (error.name === 'ValidationError') {
@@ -17,7 +16,39 @@ export async function createVehicle(req: Request, res: Response) {
     res.status(500).json({ message: 'Erro ao criar veículo. Tente novamente.' });
   }
 }
-export async function updateVehicle(req: Request, res: Response) { const vehicle = await Vehicle.findByIdAndUpdate(req.params.id, req.body, { new: true }); if (!vehicle) return res.status(404).json({ message: 'Not found' }); res.json(vehicle); }
-export async function deleteVehicle(req: Request, res: Response) { const vehicle = await Vehicle.findByIdAndDelete(req.params.id); if (!vehicle) return res.status(404).json({ message: 'Not found' }); res.status(204).send(); }
-export async function listVehicles(req: Request, res: Response) { const vehicles = await Vehicle.find(); res.json(vehicles); }
+
+export async function updateVehicle(req: Request, res: Response) {
+  try {
+    const vehicle = await Vehicle.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!vehicle) return res.status(404).json({ message: 'Veículo não encontrado' });
+    res.json(vehicle);
+  } catch (error: any) {
+    console.error('Error updating vehicle:', error);
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'Placa já cadastrada. Tente novamente.' });
+    }
+    res.status(500).json({ message: 'Erro ao atualizar veículo. Tente novamente.' });
+  }
+}
+
+export async function deleteVehicle(req: Request, res: Response) {
+  try {
+    const vehicle = await Vehicle.findByIdAndDelete(req.params.id);
+    if (!vehicle) return res.status(404).json({ message: 'Veículo não encontrado' });
+    res.status(204).send();
+  } catch (error: any) {
+    console.error('Error deleting vehicle:', error);
+    res.status(500).json({ message: 'Erro ao deletar veículo. Tente novamente.' });
+  }
+}
+
+export async function listVehicles(req: Request, res: Response) {
+  try {
+    const vehicles = await Vehicle.find();
+    res.json(vehicles);
+  } catch (error: any) {
+    console.error('Error listing vehicles:', error);
+    res.status(500).json({ message: 'Erro ao listar veículos. Tente novamente.' });
+  }
+}
 

@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-vehicles',
@@ -18,11 +19,13 @@ export class VehiclesComponent implements OnInit, OnDestroy {
   query: string = '';
   availability: 'all' | 'available' | 'reserved' = 'all';
   private routerSubscription?: Subscription;
+  carsData: Array<{ name: string; year: string; type: string; engine: string; size: string }> = []; // Dados do carros.json
   
   constructor(
     private api: ApiService, 
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private http: HttpClient
   ) {
     // Recarrega reservas quando volta para esta página
     this.routerSubscription = this.router.events
@@ -40,8 +43,45 @@ export class VehiclesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.loadCarsData();
     this.loadVehicles();
     this.loadUserReservations();
+  }
+
+  loadCarsData(): void {
+    // Carrega os dados do carros.json para obter type, engine e size
+    this.http.get<Array<{ name: string; year: string; type: string; engine: string; size: string }>>('/carros.json')
+      .subscribe({
+        next: (data) => {
+          this.carsData = Array.isArray(data) ? data : [];
+          // Reprocessa reservas se já existirem para incluir os novos dados
+          if (this.reservations.length > 0 && this.vehicles.length > 0) {
+            this.processReservations();
+          }
+        },
+        error: (err) => {
+          console.error('Error loading carros.json:', err);
+          this.carsData = [];
+        }
+      });
+  }
+
+  /**
+   * Busca os dados completos do carro (type, engine, size) baseado no modelo
+   */
+  getCarDataByModel(model: string): { type?: string; engine?: string; size?: string; year?: string } {
+    if (!model || !this.carsData || this.carsData.length === 0) {
+      return {};
+    }
+    
+    // Busca pelo nome/modelo exato ou parcial (case-insensitive)
+    const carData = this.carsData.find(car => 
+      car.name.toLowerCase() === model.toLowerCase() ||
+      model.toLowerCase().includes(car.name.toLowerCase()) ||
+      car.name.toLowerCase().includes(model.toLowerCase())
+    );
+    
+    return carData || {};
   }
 
   loadVehicles(): void {
@@ -94,36 +134,53 @@ export class VehiclesComponent implements OnInit, OnDestroy {
           return vId === vehicleId || vId === String(vehicleId);
         });
         
+        // Busca dados adicionais do carros.json se o veículo existir
+        const carData = vehicle ? this.getCarDataByModel(vehicle.model) : {};
+        
         return {
           ...reservation,
-          vehicle: vehicle
+          vehicle: vehicle ? {
+            ...vehicle,
+            type: carData.type || '',
+            engine: carData.engine || '',
+            size: carData.size || '',
+            // Mantém o year do veículo se não estiver no carData
+            year: carData.year || vehicle.year || ''
+          } : null
         };
       });
+    
+    // Reaplica os filtros para excluir os veículos das reservas recentes do grid
+    this.applyFilters();
   }
 
   applyFilters(): void {
     const q = this.query.trim().toLowerCase();
-    this.filtered = this.vehicles.filter(v => {
-      const matchesQuery = !q || `${v.make} ${v.model} ${v.licensePlate}`.toLowerCase().includes(q);
-      const matchesAvail = this.availability === 'all' || (this.availability === 'available' ? !v.isReserved : !!v.isReserved);
-      return matchesQuery && matchesAvail;
+    
+    // Coleta os IDs dos veículos que já aparecem nas reservas recentes para evitar duplicação
+    const reservedVehicleIds = new Set<string>();
+    this.recentReservations.forEach(r => {
+      if (r.vehicle) {
+        const vId = r.vehicle._id || r.vehicle.id;
+        if (vId != null) {
+          reservedVehicleIds.add(String(vId));
+        }
+      } else if (r.vehicleId) {
+        // Fallback: se o vehicle não foi encontrado, usa o vehicleId da reserva
+        const vehicleId = r.vehicleId._id || r.vehicleId.id || r.vehicleId;
+        if (vehicleId != null) {
+          reservedVehicleIds.add(String(vehicleId));
+        }
+      }
     });
     
-    // Recarrega reservas para atualizar veículos nas reservas
-    if (this.recentReservations.length > 0) {
-      this.updateReservationsWithVehicles();
-    }
-  }
-
-  private updateReservationsWithVehicles(): void {
-    this.recentReservations = this.recentReservations.map(reservation => {
-      const vehicle = this.vehicles.find(v => 
-        (v._id || v.id) === (reservation.vehicleId?._id || reservation.vehicleId)
-      );
-      return {
-        ...reservation,
-        vehicle: vehicle
-      };
+    this.filtered = this.vehicles.filter(v => {
+      const vId = String(v._id || v.id);
+      // Exclui veículos que já aparecem nas reservas recentes
+      const notInRecentReservations = !reservedVehicleIds.has(vId);
+      const matchesQuery = !q || `${v.make} ${v.model} ${v.licensePlate}`.toLowerCase().includes(q);
+      const matchesAvail = this.availability === 'all' || (this.availability === 'available' ? !v.isReserved : !!v.isReserved);
+      return notInRecentReservations && matchesQuery && matchesAvail;
     });
   }
 

@@ -37,6 +37,12 @@
             </div>
             <div class="reservation-info">
               <span class="reservation-vehicle">{{ reservation.vehicle.make }} {{ reservation.vehicle.model }}</span>
+              <span class="reservation-year" *ngIf="reservation.vehicle.year">Ano: {{ reservation.vehicle.year }}</span>
+              <div class="reservation-details">
+                <span class="reservation-badge" *ngIf="reservation.vehicle.type">{{ reservation.vehicle.type }}</span>
+                <span class="reservation-badge" *ngIf="reservation.vehicle.engine">{{ reservation.vehicle.engine }}</span>
+                <span class="reservation-badge" *ngIf="reservation.vehicle.size">{{ reservation.vehicle.size }} lugares</span>
+              </div>
               <span class="reservation-plate">{{ reservation.vehicle.licensePlate }}</span>
             </div>
           </div>
@@ -52,7 +58,6 @@
     </div>
   </section>
   <section class="grid">
-    <app-vehicle-card *ngFor="let v of filtered" [vehicle]="v"></app-vehicle-card>
   </section>
   
   <div class="navbar">
@@ -69,6 +74,5 @@
       <img src="btnperfil.png" alt="icone do perfil" />
     </a>
   </div>
-  
 
 </main>

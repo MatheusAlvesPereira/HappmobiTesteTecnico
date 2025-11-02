@@ -38,18 +38,37 @@ export async function createReservation(req: Request, res: Response) {
     res.status(500).json({ message: 'Erro ao criar reserva. Tente novamente.' });
   }
 }
+
 export async function releaseReservation(req: Request, res: Response) {
-  const { id } = req.params;
-  const reservation = await Reservation.findById(id);
-  if (!reservation) return res.status(404).json({ message: 'Not found' });
-  reservation.status = 'released';
-  await reservation.save();
-  await Vehicle.findByIdAndUpdate(reservation.vehicleId, { isReserved: false, reservedBy: null });
-  res.status(204).send();
+  try {
+    const { id } = req.params;
+    const reservation = await Reservation.findById(id);
+    if (!reservation) {
+      return res.status(404).json({ message: 'Reserva não encontrada' });
+    }
+    
+    if (reservation.status === 'released') {
+      return res.status(400).json({ message: 'Reserva já foi liberada' });
+    }
+    
+    reservation.status = 'released';
+    await reservation.save();
+    await Vehicle.findByIdAndUpdate(reservation.vehicleId, { isReserved: false, reservedBy: null });
+    res.status(204).send();
+  } catch (error: any) {
+    console.error('Error releasing reservation:', error);
+    res.status(500).json({ message: 'Erro ao liberar reserva. Tente novamente.' });
+  }
 }
+
 export async function listUserReservations(req: Request, res: Response) {
-  const { userId } = req.params;
-  const reservations = await Reservation.find({ userId });
-  res.json(reservations);
+  try {
+    const { userId } = req.params;
+    const reservations = await Reservation.find({ userId }).populate('vehicleId');
+    res.json(reservations);
+  } catch (error: any) {
+    console.error('Error listing user reservations:', error);
+    res.status(500).json({ message: 'Erro ao listar reservas do usuário. Tente novamente.' });
+  }
 }
 
