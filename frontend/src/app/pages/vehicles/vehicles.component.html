@@ -1,29 +1,27 @@
 <main class="vehcleshome">
   <section class="backgroundimgcarcontainersection">
     <div class="backgroundimgcarcontainer">
-      <img class="imagebackgroundcar" src="AdobeStock_302279500.png" alt="imagem de fundo">
       <img class="profilepicture" src="profilepicture.png" alt="imagem de perfil">
       <p class="helloname">Olá, <span>name</span></p>
     </div>
-  </section>
+
+    <div class="imagecarspace">
+      <img class="imagebackgroundcar" src="AdobeStock_302279500.png" alt="imagem de fundo">
+    </div>
+   </section>
   <section class="toolbar">
     <div class="filters">
-      <img src="Searchbar.png" alt="icone de busca" />
-  
+      <div class="searchbar">
+        <img class="imageseachbar" src="Searchbar.png" alt="icone de busca" />
+        <input class="inputsearch" type="text" placeholder="Buscar carro" [(ngModel)]="query" (ngModelChange)="applyFilters()"/>
+      </div>
+      
       <button class="btnfilter" type="button" (click)="ActivateFilter()">
-        <img src="btnFilter.png" alt="icone de filtro" />
+        <img class="btnfilterimg" src="btnFilter.png" alt="icone de filtro" />
       </button>  
     </div>
     <div class="search">
-      <input placeholder="Buscar por marca, modelo ou placa" [(ngModel)]="query" (ngModelChange)="applyFilters()" />
-      
-      <!-- <select [(ngModel)]="availability" (ngModelChange)="applyFilters()">
-        <option value="all">Todos</option>
-        <option value="available">Disponíveis</option>
-        <option value="reserved">Reservados</option>
-      </select> -->
-  
-      <p class="lastreservationstext">Últimas reservas</p>
+      <p class="lastreservationstext">Última reserva</p>
       
       <!-- Últimas reservas do usuário -->
       <div class="recent-reservations" *ngIf="recentReservations.length > 0">
@@ -36,14 +34,13 @@
                 (error)="onReservationImageError($event)" />
             </div>
             <div class="reservation-info">
-              <span class="reservation-vehicle">{{ reservation.vehicle.make }} {{ reservation.vehicle.model }}</span>
-              <span class="reservation-year" *ngIf="reservation.vehicle.year">Ano: {{ reservation.vehicle.year }}</span>
+              <span class="reservation-vehicle">{{ reservation.vehicle.make }} {{ reservation.vehicle.model }} - Ano: <span class="reservation-year" *ngIf="reservation.vehicle.year">{{ reservation.vehicle.year }}</span>
+              </span>
               <div class="reservation-details">
                 <span class="reservation-badge" *ngIf="reservation.vehicle.type">{{ reservation.vehicle.type }}</span>
-                <span class="reservation-badge" *ngIf="reservation.vehicle.engine">{{ reservation.vehicle.engine }}</span>
+                <span class="reservation-badge" *ngIf="reservation.vehicle.engine">Motor: {{ reservation.vehicle.engine }}</span>
                 <span class="reservation-badge" *ngIf="reservation.vehicle.size">{{ reservation.vehicle.size }} lugares</span>
               </div>
-              <span class="reservation-plate">{{ reservation.vehicle.licensePlate }}</span>
             </div>
           </div>
         </div>
@@ -52,9 +49,11 @@
         <p class="no-reservations-text">Nenhuma reserva recente</p>
       </div>
 
-      <button class="btnqrcode">
-        <img class="btnqrcodeimg" src="Qrcodebtn.png" alt="icone de qrcode" />
-      </button>  
+      <div class="btnqrcodecontainer">
+        <button class="btnqrcode">
+          <img class="btnqrcodeimg" src="Qrcodebtn.png" alt="icone de qrcode" />
+        </button>
+      </div>  
     </div>
   </section>
   <section class="grid">
