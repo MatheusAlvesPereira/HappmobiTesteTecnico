@@ -2,7 +2,7 @@
   <section class="backgroundimgcarcontainersection">
     <div class="backgroundimgcarcontainer">
       <img class="profilepicture" src="profilepicture.png" alt="imagem de perfil">
-      <p class="helloname">Olá, <span>name</span></p>
+      <p class="helloname">Olá, <span>Marcos Silva</span></p>
     </div>
 
     <div class="imagecarspace">
@@ -23,7 +23,6 @@
     <div class="search">
       <p class="lastreservationstext">Última reserva</p>
       
-      <!-- Últimas reservas do usuário -->
       <div class="recent-reservations" *ngIf="recentReservations.length > 0">
         <div class="reservation-item" *ngFor="let reservation of recentReservations">
           <div class="reservation-content" *ngIf="reservation.vehicle">

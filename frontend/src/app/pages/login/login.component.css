@@ -43,6 +43,7 @@
     margin-top: 65px;
     margin-inline: 37px;
     border-radius: 32px;
+    padding-left: 2em;
     
     width: 354px;
     height: 63px;
@@ -58,6 +59,7 @@
 }
 
 .inputsenha{
+    padding-left: 2em;
     width: 354px;
     height: 63px;
     margin-top: 17px;
@@ -88,21 +90,18 @@
     letter-spacing: 0%;
 }
 
+.btnforgot, .btnregister, .btnregisterlink{
+    all: unset;
+}
+
 .btnforgot{
-    margin-inline: 129px;
-    margin-top: 15px;
-    font-family: Poppins;
-    font-weight: 400;
-    font-style: Regular;
-    font-size: 16px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    text-decoration: underline;
-    text-decoration-style: solid;
-    color: rgba(255, 255, 255, 1);
+    all: unset;
+    margin-inline: 8em;
+    margin-top: 1em;
 }
 
 .btnregister{
+    all: unset;
     margin-top: 130px;
     font-family: Poppins;
     font-weight: 400;
@@ -110,14 +109,12 @@
     font-size: 16px;
     line-height: 100%;
     letter-spacing: 0%;
-    text-decoration-style: solid;
     text-decoration-thickness: 0%;
-    margin-left: 64px;
-    margin-right: 72px;
-    color: rgba(255, 255, 255, 1);
+    padding-inline: 3em;
 }
 
 .btnregisterlink{
+    padding-left: 0.5em;
     font-family: Inter;
     font-weight: 400;
     font-style: Regular;
@@ -125,6 +122,29 @@
     line-height: 100%;
     letter-spacing: 0%;
     text-decoration: underline;
-    text-decoration-style: solid;
+    color: #ffff;
     text-decoration-thickness: 0%;
+}
+
+.btnforgotlinktext{
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    color: white;
+}
+
+.btnregisterlinktext{
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration-thickness: 0%;
+    color: #ffff;
 }

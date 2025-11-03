@@ -1,5 +1,4 @@
 <main class="vehclesfilter">
-
     <div class="searchbackground">
         <img src="imgfilter.png" alt="icone de busca" />
         <p class="textsearch">Busca</p>
@@ -13,71 +12,84 @@
         </ul>
     </nav>
 
-    <form>
+    
+    <div class="vehiclescontainer">
+        <form class="filterform">
 
-        <div class="btnform">
-            <ul class="btnformul">
-                <li>
-                    <p>Tipos de carrocerias</p>
-                </li>
+            <div class="btnform">
+                <ul class="btnformul">
+                    <li>
+                        <p class="title">Tipos de carrocerias</p>
+                    </li>
 
-                <li>        
-                    <img class="btnformimg" src="btnform.png" alt="icone de botao"/>
-                </li>
-            </ul>
-        </div>
+                    <li>        
+                        <img class="btnformimg" src="btnform.png" alt="icone de botao"/>
+                    </li>
+                </ul>
+            </div>
 
+            
+            <div class="checkboxcontainer">
+                <label class="checkboxlabel" *ngFor="let type of typeOptions">
+                    <input class="checkbox" type="checkbox" (change)="onTypeToggle(type, $event.target)" />
+                    <span class="custom-checkbox"></span>
+                    {{ type }}
+                </label>
+            </div>
+
+            <div class="btnform">
+                <ul class="btnformul">
+                    <li>
+                        <p class="title">Tipos de motores</p>
+                    </li>
+
+                    
+                    <li>        
+                        <img class="btnformimgtype" src="btnform.png" alt="icone de botao"/>
+                    </li>
+                </ul>
+            </div>
+
+            
+            <div class="engine-buttons-wrapper">
+                <label class="engine-button-label" *ngFor="let engine of engineOptions">
+                    <input class="engine-checkbox" type="checkbox" (change)="onEngineToggle(engine, $event.target)" />
+                    <span class="engine-button-text">Motor {{ engine }}</span>
+                </label>
+            </div>
         
-        <div class="checkboxcontainer">
-            <label class="checkboxlabel" *ngFor="let type of typeOptions">
-                <input class="checkbox" type="checkbox" (change)="onTypeToggle(type, $event.target)" />
-                <span class="custom-checkbox"></span>
-                {{ type }}
-            </label>
-        </div>
 
-        <div class="btnform">
-            <ul class="btnformul">
-                <li>
-                    <p>Tipos de motores</p>
-                </li>
+            
+            <div class="btnform">
+                <ul class="btnformul">
+                    <li>
+                        <p class="title">Quantdade de Lugares</p>
+                    </li>
 
-                
-                <li>        
-                    <img class="btnformimg" src="btnform.png" alt="icone de botao"/>
-                </li>
-            </ul>
-            <div>
-                <label *ngFor="let engine of engineOptions" style="display:inline-block;margin:0 1rem 0.75rem 0;">
-                    <input type="checkbox" (change)="onEngineToggle(engine, $event.target)" />
-                    {{ engine }}
-                </label>
+                    <li>        
+                        <img class="btnformimgsize" src="btnform.png" alt="icone de botao"/>
+                    </li>
+                </ul>
             </div>
-        </div>
-    
-        <div class="btnform">
-            <ul class="btnformul">
-                <li>
-                    <p>Quantidade de Lugares</p>
-                </li>
 
-                
-                <li>        
-                    <img class="btnformimg" src="btnform.png" alt="icone de botao"/>
-                </li>
-            </ul>
-            <div>
-                <label *ngFor="let size of sizeOptions" style="display:inline-block;margin:0 1rem 0.75rem 0;">
-                    <input type="checkbox" (change)="onSizeToggle(size, $event.target)" />
-                    {{ size }} lugares
-                </label>
+            <div class="places-options-container">
+                <div class="places-buttons-wrapper">
+                    <label class="places-button-label" *ngFor="let size of sizeOptions">
+                        <input class="places-checkbox" type="checkbox" (change)="onSizeToggle(size, $event.target)" />
+                        
+                        <span class="places-button-text">
+                            {{ size }}
+                        </span>
+                    </label>
+                </div>
             </div>
+        </form>
+        
+        <div class="apllyfilters">
+            <button class="btnfilter" type="button" (click)="applyFilters()">
+                <p>applicar filtro</p>
+            </button>
         </div>
-    </form>
-    
-    <div class="apllyfilters">
-        <button class="btnfilter" type="button" (click)="applyFilters()">
-            <p>applicar filtro</p>
-        </button>
+
     </div>
 </main>

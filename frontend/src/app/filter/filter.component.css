@@ -59,7 +59,7 @@ ul li a:hover {
 }
 
 .btnform {
-    padding: 14px 3em 16px 2em;
+    padding: 2em 3em 16px 2em;
 }
 
 .btnformul{
@@ -75,37 +75,6 @@ ul li a:hover {
 
 .btnimg{
     padding-left: 11em;
-}
-
-.applyfilters{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 101px;
-}
-
-.btnfilter{
-    margin-left: 2em;
-    float: left;
-    display: block;
-    background-color: rgb(29, 43, 58);
-    text-align: center;
-    text-decoration: none;
-    width: 354px;
-    height: 56px;
-    opacity: 1;
-    border-radius: 28px;
-}
-
-.btnfilter p{
-    color: white;
-    font-size: 1rem;
-    font-family: Inter;
-    font-weight: 400;
-    font-style: Regular;
-    font-size: 18px;
-    line-height: 100%;
-    letter-spacing: 0%;
 }
 
 .checkboxlabel{
@@ -162,17 +131,223 @@ ul li a:hover {
     background-color: #C61D35;
 }
 
-.checkbox {
-    margin: 0;
+.title{
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 0%;    
+}
+
+.engine-buttons-wrapper {
+    gap: 2em;
+    margin-top: 10px;
+    padding-left: 2em;
+}
+
+.engine-button-label{
+    width: 6.625em;
+    height: 2.375em;
+    gap: 2em;
+    margin-top: 10px;
+    padding-left: 0.6em;
+    padding-bottom: 0.5em;
+}
+
+.engine-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.engine-button-text {
+    display: inline-block;
+
+    margin-top: 1em;
+
+    padding: 8px 15px; /* Preenchimento interno */
+    border: 1px solid #ccc; /* Borda leve */
+    border-radius: 0.5em; /* Borda arredondada (pill shape) */
+    background-color: #f8f8f8;
+    color: #1D2B3A;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 1em;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+.engine-button-label:hover .engine-button-text {
+    background-color: #C61D35;     
+    border-color: #C61D35;
+    color: #fff; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.engine-checkbox:checked + .engine-button-text {
+    background-color: #C61D35; 
+    border-color: #C61D35;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(198, 29, 53, 0.5);
+}
+
+.engine-checkbox:focus + .engine-button-text {
+    box-shadow: 0 0 0 3px rgba(198, 29, 53, 0.5);
+    border-color: #C61D35;
+}
+
+.places-options-container{
+    max-width: 800px; 
+    margin: 0 auto;    
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-inline: 2em;
+    
+    /* CENTRALIZAÇÃO DE TEXTOS (Título) */
+    text-align: center; 
+}
+
+.btnformimgsize{
+    padding-left: 9em;
+}
+
+.btnformimgtype{
+    padding-left: 11.5em;
+}
+
+.places-buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 2.5em;
+    margin-top: 1em;
+    margin-bottom: 2.5em;
+    justify-content: center; 
+}
+
+.titlesize{
+    text-align: left; 
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.places-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.places-button-text {
+    display: inline-block;
+    padding-top: 0.4em; 
+    width: 3em;
+    height: 2.375em;
+    border: 1px solid #ccc; 
+    border-radius: 0.5em; 
+    background-color: #FFFFFF;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+    white-space: nowrap; 
+}
+
+
+.places-button-label:hover .places-button-text {
+    background-color: #C61D35; 
+    border-color: #C61D35;
+    color: #fff; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.places-checkbox:checked + .places-button-text {
+    background-color: #C61D35; 
+    border-color: #C61D35;
+    color: #fff; 
+    box-shadow: 0 2px 4px rgba(198, 29, 53, 0.5);
+}
+
+.places-checkbox:focus + .places-button-text {
+    box-shadow: 0 0 0 3px rgba(198, 29, 53, 0.5);
+    border-color: #C61D35;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.applyfilters{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+}
+
+.btnfilter{
+    margin-left: 2em;
+    float: left;
+    display: block;
+    background-color: rgb(29, 43, 58);
+    text-align: center;
+    text-decoration: none;
+    width: 354px;
+    height: 56px;
+    opacity: 1;
+    border-radius: 28px;
+}
+
+.btnfilter p{
+    color: white;
+    font-size: 1rem;
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+
+@media (min-width: 768px) {
+    .vehiclescontainer{
+        padding-inline: 7em;
+    }
+
+    .btnform{
+        margin-bottom: 2em;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btnfilter{
+        margin-left: 10em;
+    }
 
 }
 
-@media (max-width: 600px) {
+@media (min-width: 1200px) {
 
-    .checkboxlabel {
-        width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis; 
+    .engine-buttons-wrapper{
+        margin-left: 15em;
     }
+
+    .btnfilter{
+        margin-left: 30em;
+    }
+
 }

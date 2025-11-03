@@ -27,7 +27,7 @@
 
 .backgroundimgcarcontainer{
     z-index: 2; 
-     display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -44,6 +44,12 @@
 
 .helloname{
     color: white;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 21px;
+    line-height: 100%;
+    letter-spacing: 2.5%;
 }
 
 .filters{
@@ -233,6 +239,30 @@
     font-size: 17px;
 }
 
-@media screen and (max-width: 768px) { 
-    
+@media screen and (max-width: 760px) {   
+    .imagebackgroundcar{
+        width: 100vw;
+        padding-right: 0;
+    }
+}
+
+@media screen and (min-width: 760px) {   
+    .imagebackgroundcar{
+        width: 100vw;
+        padding-right: 0;
+    }
+
+    .filters{
+        padding-left: 10em;
+    }
+}
+
+@media screen and (min-width: 1200px) {   
+    .imagebackgroundcar{
+        width: 100vw;
+    }
+
+    .filters{
+        padding-left: 35em;
+    }
 }

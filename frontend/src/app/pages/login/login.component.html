@@ -7,8 +7,8 @@
     <input class="inputsenha" placeholder="Senha" [(ngModel)]="password" name="password" type="password" required>
     <button class="btnsubmit" type="submit">Entrar</button>
 
-    <button class="btnforgot" type="button" (click)="navigateToForgotPassword()">Esqueci minha senha</button><br />
-    <button class="btnregister" type="button" (click)="navigateToRegister()">Ainda não tem Cadastro? <span class="btnregisterlink">Criar Conta</span></button>
+    <button class="btnforgot" type="button" (click)="navigateToForgotPassword()"><span class="btnforgotlinktext">Esqueci minha senha</span></button><br />
+    <button class="btnregister" type="button" (click)="navigateToRegister()"><span class="btnregisterlinktext">Ainda não tem Cadastro?</span> <span class="btnregisterlink">Criar Conta</span></button>
   </form>
   <div *ngIf="error">{{error}}</div>
 </div>
