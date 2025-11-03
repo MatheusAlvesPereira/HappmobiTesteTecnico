@@ -2,11 +2,11 @@
 
     <div class="searchbackground">
         <img src="imgfilter.png" alt="icone de busca" />
-        <p>Busca</p>
+        <p class="textsearch">Busca</p>
     </div>
     
     <nav>
-        <ul>
+        <ul class="filtercontainer">
             <li><a href="default.asp">Cancelar</a></li>
             <li><a href="news.asp">Filtros</a></li>
             <li><a (click)="clearFilters(); $event.preventDefault()" style="cursor: pointer;">Limpar</a></li>
@@ -16,23 +16,35 @@
     <form>
 
         <div class="btnform">
-            <ul>
+            <ul class="btnformul">
                 <li>
                     <p>Tipos de carrocerias</p>
                 </li>
+
+                <li>        
+                    <img class="btnformimg" src="btnform.png" alt="icone de botao"/>
+                </li>
             </ul>
-            <div>
-                <label *ngFor="let type of typeOptions" style="display:inline-block;margin:0 1rem 0.75rem 0;">
-                    <input type="checkbox" (change)="onTypeToggle(type, $event.target)" />
-                    {{ type }}
-                </label>
-            </div>
+        </div>
+
+        
+        <div class="checkboxcontainer">
+            <label class="checkboxlabel" *ngFor="let type of typeOptions">
+                <input class="checkbox" type="checkbox" (change)="onTypeToggle(type, $event.target)" />
+                <span class="custom-checkbox"></span>
+                {{ type }}
+            </label>
         </div>
 
         <div class="btnform">
-            <ul>
+            <ul class="btnformul">
                 <li>
                     <p>Tipos de motores</p>
+                </li>
+
+                
+                <li>        
+                    <img class="btnformimg" src="btnform.png" alt="icone de botao"/>
                 </li>
             </ul>
             <div>
@@ -44,9 +56,14 @@
         </div>
     
         <div class="btnform">
-            <ul>
+            <ul class="btnformul">
                 <li>
                     <p>Quantidade de Lugares</p>
+                </li>
+
+                
+                <li>        
+                    <img class="btnformimg" src="btnform.png" alt="icone de botao"/>
                 </li>
             </ul>
             <div>
